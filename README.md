@@ -14,33 +14,46 @@ This repository contains reusable components and frameworks designed to accelera
 
 ```
 core.public.github/
-├── llm-wrappers/          # LLM integration frameworks
-├── d365-extensions/       # Dynamics 365 templates and extensions
-├── integration-utils/     # Utilities for various integrations
-└── docs/                  # Shared documentation
+├── src/                   # Source code
+│   ├── main/              # Core implementation
+│   │   ├── llm-wrappers/
+│   │   ├── d365-extensions/
+│   │   └── integration-utils/
+│   └── test/              # Test files
+├── docs/                  # Documentation
+│   ├── api/               # API specifications
+│   └── guides/            # Setup and tutorials
+├── examples/              # Demo and sample code
+├── scripts/               # Build and deployment scripts
+├── .github/workflows/     # CI/CD pipelines
+├── requirements.txt       # Python dependencies
+├── build.gradle           # Java dependencies
+└── CONTRIBUTING.md        # Contribution guidelines
 ```
 
 ## Getting Started
 
 Each framework has its own directory with dedicated documentation. Navigate to the specific framework directory for detailed setup and usage instructions.
 
+For a complete getting started guide, see [Getting Started Guide](docs/guides/getting-started.md).
+
 ### LLM Wrappers
 
-Located in `/llm-wrappers`, this framework provides unified interfaces for working with various Large Language Model providers.
+Located in `src/main/llm-wrappers/`, this framework provides unified interfaces for working with various Large Language Model providers.
 
-[Read more →](llm-wrappers/README.md)
+[Read more →](src/main/llm-wrappers/README.md)
 
 ### D365 Extensions
 
-Located in `/d365-extensions`, contains templates and utilities for extending Microsoft Dynamics 365.
+Located in `src/main/d365-extensions/`, contains templates and utilities for extending Microsoft Dynamics 365.
 
-[Read more →](d365-extensions/README.md)
+[Read more →](src/main/d365-extensions/README.md)
 
 ### Integration Utils
 
-Located in `/integration-utils`, provides common utilities for building integrations between systems.
+Located in `src/main/integration-utils/`, provides common utilities for building integrations between systems.
 
-[Read more →](integration-utils/README.md)
+[Read more →](src/main/integration-utils/README.md)
 
 ## Contributing
 

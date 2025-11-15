@@ -1,0 +1,59 @@
+# Docker Compose configuration for Core Public GitHub
+
+version: '3.8'
+
+services:
+  # Python development environment
+  python-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: python-base
+    container_name: core-python-dev
+    volumes:
+      - ./src:/app/src
+      - ./examples:/app/examples
+      - ./docs:/app/docs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+    env_file:
+      - .env
+    command: python -m pytest src/test/ -v
+    networks:
+      - core-network
+
+  # Java build environment
+  java-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: java-base
+    container_name: core-java-build
+    volumes:
+      - ./src:/app/src
+      - ./build:/app/build
+    command: ./gradlew build test
+    networks:
+      - core-network
+
+  # Documentation server (optional)
+  docs:
+    image: python:3.11-slim
+    container_name: core-docs
+    working_dir: /docs
+    volumes:
+      - ./docs:/docs
+    command: python -m http.server 8000
+    ports:
+      - "8000:8000"
+    networks:
+      - core-network
+
+networks:
+  core-network:
+    driver: bridge
+
+volumes:
+  gradle-cache:
+  pip-cache:

@@ -7,10 +7,15 @@ on:
     branches: [ main, develop ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   lint-and-test-python:
     name: Lint and Test Python
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         python-version: ['3.8', '3.9', '3.10', '3.11']
@@ -60,6 +65,8 @@ jobs:
   build-java:
     name: Build and Test Java
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         java-version: ['11', '17']
@@ -112,6 +119,9 @@ jobs:
   security-scan:
     name: Security Scanning
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     
     steps:
     - uses: actions/checkout@v4
@@ -132,6 +142,8 @@ jobs:
   documentation:
     name: Build Documentation
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     
     steps:
     - uses: actions/checkout@v4
@@ -159,6 +171,8 @@ jobs:
   validate-structure:
     name: Validate Repository Structure
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     
     steps:
     - uses: actions/checkout@v4
